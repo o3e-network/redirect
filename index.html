@@ -1,11 +1,42 @@
+<!doctype html>
 <html>
-    <head>
-        <title>Redirecting...</title>
-    </head>
-    <body>
-        <h1>Redirecting...</h1>
-        <script language="javascript"type="text/javascript">
-            window.location.replace("https://outlook.com/owa/o3e.net");
-        </script>
-    </body>
+
+<head>
+  <meta charset="utf-8">
+  <title>Redirecting...</title>
+  <script src="https://cdn.staticfile.org/jquery/1.9.0/jquery.js"></script>
+  <script type="text/javascript" charset="utf-8">
+    $(function () {
+      window.location.replace("https://outlook.com/owa/o3e.net");
+      $.fn.typewriter = function () {
+        this.each(function () {
+          var $ele = $(this),
+            str = $ele.html(),
+            sum = 0;
+          $ele.html("");
+          var timer = setInterval(function () {
+            var current = str.substr(sum, 1);
+            if (current == '<') {
+              sum = str.indexOf('>', sum) + 1;
+            } else {
+              sum++;
+            }
+            var curr = str.substr(0, sum);
+            $ele.html(curr + (sum & 1 ? '_' : ''));
+            if (sum >= str.length) {
+              clearInterval(timer);
+            }
+          }, 50);
+        });
+        return this;
+      };
+      $("#code").typewriter();
+    })
+  </script>
+</head>
+
+<body>
+  <div style="font-family: monospace;" id="code">PS> Start-Process -FilePath outlook.office.com</div>
+</body>
+
 </html>
